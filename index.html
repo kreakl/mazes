@@ -1,0 +1,61 @@
+<!doctype html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>Генератор лабиринтов</title>
+        <link rel="stylesheet" href="css/main.css">
+        <meta name="viewport" content="initial-scale=1,maximum-scale=1,width=device-width" />
+    </head>
+    <body>
+        <div id="container">
+            <div id="mazeContainer">
+                <canvas id="maze"></canvas>
+            </div>
+                <div class="sidebarContainer">
+                    <div class="title">
+                        <h1>Генератор лабиринтов</h1>
+                    </div>
+                    <button id="go">Новый лабиринт</button>
+                    <ul id="sizeParameters"></ul>
+                    <ul id="seedParameters">
+                        <li><label>Seed</label><input id="seedInput" type="text" pattern="\d*" maxlength="9" placeholder="Random"></li>
+                    </ul>
+                    <ul id="delaySelector"></ul>
+                    <ul id="exitSelector"></ul>
+                    <section class="menu-wrapper">
+                        <article class="menu">
+                            <div class="menu-header">
+                                <div class="menu-title">Идеальные лабиринты</div>
+                                <span class="icon">+</span>
+                            </div>
+                            <div class="menu-content">
+                                <ul id="algorithmSelector"></ul>
+                            </div>
+                        </article>
+                        <article class="menu">
+                            <div class="menu-header">
+                                <div class="menu-title">Неидеальные лабиринты</div>
+                                <span class="icon">+</span>
+                            </div>
+                            <div class="menu-content">
+                                <ul id="otherAlgorithmSelector"></ul>
+                            </div>
+                        </article>
+                    </section>
+                    <button id="play">Играть</button>
+                    <button id="solve">Решить</button>
+                    <button id="finishRunning">Закончить</button>
+                    <button id="changeParams">Назад</button>
+                    <button id="stop">Стоп</button>
+                    <div id="info"></div>
+            </div>
+        </div>
+
+        <script src="js/config.js" type="module"></script>
+        <script src="js/stateMachine.js" type="module"></script>
+        <script src="js/model.js" type="module"></script>
+        <script src="js/view.js" type="module"></script>
+        <script src="js/main.js" type="module"></script>
+
+    </body>
+</html>
