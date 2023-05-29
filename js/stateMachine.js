@@ -38,7 +38,7 @@ export function buildStateMachine() {
                 .thenChangeTo(STATE_INIT);
         },
         displaying() {
-            ifStateIsOneOf(STATE_INIT, STATE_RUNNING_ALGORITHM)
+            ifStateIsOneOf(STATE_INIT, STATE_RUNNING_ALGORITHM, STATE_PLAYING)
                 .thenChangeTo(STATE_DISPLAYING);
         },
         playing() {

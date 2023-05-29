@@ -31,6 +31,7 @@ export function buildView(model, stateMachine) {
         elSeedParameterList = document.getElementById('seedParameters'),
         elMazeAlgorithmList = document.getElementById('algorithmSelector'),
         elMazeAlgorithmListSecond = document.getElementById('otherAlgorithmSelector'),
+        elMazeAlgorithmMenu = document.querySelector('.menu-wrapper'),
         elAlgorithmDelayList = document.getElementById('delaySelector'),
         elExitsList = document.getElementById('exitSelector'),
         elSolveButton = document.getElementById('solve'),
@@ -152,6 +153,7 @@ export function buildView(model, stateMachine) {
                     el.classList.toggle('selected', el.dataset.value === algorithmId);
                 });
                 [elSolveButton, elPlayButton].forEach((el) => el.classList.add('disabled'));
+                this.setExitConfiguration(model.exitConfig = 'no exits');
             } else {
                 Array.from(elExitsList.children).slice(1).forEach((el) => el.classList.remove('disabled'));
                 [...elMazeAlgorithmList.querySelectorAll('li')].forEach(el => {
@@ -186,8 +188,7 @@ export function buildView(model, stateMachine) {
         },
 
         updateForNewState(state) {
-            toggleElementVisibility(elMazeAlgorithmList,  [STATE_INIT].includes(state));
-            // toggleElementVisibility(elMazeAlgorithmListSecond,  [STATE_INIT].includes(state));
+            toggleElementVisibility(elMazeAlgorithmMenu,  [STATE_INIT].includes(state));
             toggleElementVisibility(elSizeParameterList,  [STATE_INIT].includes(state));
             toggleElementVisibility(elSeedParameterList,  [STATE_INIT].includes(state));
             toggleElementVisibility(elExitsList,          [STATE_INIT].includes(state));
@@ -196,6 +197,9 @@ export function buildView(model, stateMachine) {
             toggleElementVisibility(elGoButton,           [STATE_INIT, STATE_DISPLAYING].includes(state));
 
             toggleElementVisibility(elChangeParamsButton,    [STATE_DISPLAYING].includes(state));
+            toggleElementVisibility(elSolveButton,           [STATE_DISPLAYING].includes(state));
+            toggleElementVisibility(elPlayButton,            [STATE_DISPLAYING].includes(state));
+            toggleElementVisibility(elStopButton,            [STATE_PLAYING].includes(state));
 
             toggleElementVisibility(elFinishRunningButton, [STATE_RUNNING_ALGORITHM].includes(state));
 
@@ -203,15 +207,15 @@ export function buildView(model, stateMachine) {
                 case STATE_INIT:
                     this.showInfo('Выберите параметры для построения лабиринта и затем нажмите <b>Новый лабиринт</b>');
                     break;
-                case STATE_RUNNING_ALGORITHM:
-                    this.showInfo('Генерация алгоритма была замедлена.<br><br>Нажмите ЗАКОНЧИТЬ, чтобы увидеть результат');
+                case STATE_DISPLAYING:
+                    this.showSeedValue();
+                    this.toggleSolveButtonCaption(true);
                     break;
                 case STATE_PLAYING:
                     this.showInfo('');
                     break;
-                case STATE_DISPLAYING:
-                    this.showSeedValue();
-                    this.toggleSolveButtonCaption(true);
+                case STATE_RUNNING_ALGORITHM:
+                    this.showInfo('Генерация алгоритма была замедлена.<br><br>Нажмите ЗАКОНЧИТЬ, чтобы увидеть результат');
                     break;
                 default:
                     console.assert(false, 'unexpected state value: ' + state);

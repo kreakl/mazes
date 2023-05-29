@@ -63,6 +63,7 @@ html, body {
 
 .menu-content {
     display: none;
+    margin-bottom: 5px;
 }
 
 #algorithmSelector, #otherAlgorithmSelector {
