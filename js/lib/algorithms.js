@@ -214,7 +214,7 @@ export const algorithms = {
     },
     [ALGORITHM_WILSON]: {
         metadata: {
-            'description': 'Уилсона',
+            'description': 'Алгоритм Уилсона',
 
         },
         fn: function*(grid, config) {
@@ -341,8 +341,7 @@ export const algorithms = {
     },
     [ALGORITHM_KRUSKAL]: {
         metadata: {
-            'description': 'Краскал',
-
+            'description': 'Алгоритм Краскала',
         },
         fn: function*(grid, config) {
             "use strict";
@@ -393,7 +392,7 @@ export const algorithms = {
     },
     [ALGORITHM_SIMPLIFIED_PRIMS]: {
         metadata: {
-            'description': 'Прим (упрощённый)',
+            'description': 'Алгоритм Прима (упрощённый)',
 
         },
         fn: function*(grid, config) {
@@ -428,7 +427,7 @@ export const algorithms = {
 
     [ALGORITHM_TRUE_PRIMS]: {
         metadata: {
-            'description': 'Прим (модифицированный)',
+            'description': 'Алгоритм Прима (модифицированный)',
 
         },
         fn: function*(grid, config) {
@@ -533,7 +532,7 @@ export const algorithms = {
     },
     [ALGORITHM_RECURSIVE_DIVISION]: {
         metadata: {
-            description: 'Рекурсивное деление'
+            description: 'Алгоритм рекурсивного деления'
         },
         fn: function*(grid, config) {
             const {random} = config,
@@ -597,7 +596,6 @@ export const algorithms = {
             grid.forEachCell((cell) => {
                 cell.neighbours.toArray().forEach((neighbour) => {
                     grid.link(cell, neighbour);
-                    cell.metadata[METADATA_VISITED] = true;
                 });
                 progress.step(cell);
             });
@@ -607,7 +605,7 @@ export const algorithms = {
     },
     [ALGORITHM_SERPENTINE]: {
       metadata: {
-        description: 'Змеевидный алгоритм',
+        description: 'Змеевидный лабиринт',
         type: 'other',
       },
       fn: function* (grid, config) {
@@ -618,7 +616,7 @@ export const algorithms = {
 
         grid.forEachCell((cell) => {
           cell.neighbours.toArray().forEach((neighbour) => {
-            grid.link(cell, neighbour);
+              sizeParametersgrid.link(cell, neighbour);
           });
         });
 
@@ -738,7 +736,7 @@ export const algorithms = {
     },
    [ALGORITHM_ELLERS]: {
         metadata: {
-            'description': 'Эллера',
+            'description': 'Алгоритм Эллера',
         },
         fn: function*(grid, config) {
             "use strict";

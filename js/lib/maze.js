@@ -187,6 +187,7 @@ function buildBaseGrid(config) {
                     nextCell = Object.values(currentCell.neighbours)
                         .filter(neighbour => currentCell.isLinkedTo(neighbour))
                         .find(neighbour => (neighbour.metadata || {})[METADATA_DISTANCE] === currentDistance - 1);
+                if (!nextCell) break;
                 path.push(nextCell.coords);
                 currentCell = nextCell;
             }

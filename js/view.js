@@ -83,6 +83,7 @@ export function buildView(model, stateMachine) {
             elParameterValue.setAttribute('required', 'required');
             elParameterValue.setAttribute('min', minimumValue);
             elParameterValue.setAttribute('max', maximumValue);
+            elParameterValue.setAttribute('value', '30');
             elParameterValue.oninput = () => eventTarget.trigger(EVENT_SIZE_PARAMETER_CHANGED, {
                 name,
                 value: Number(elParameterValue.value)
