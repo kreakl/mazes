@@ -616,7 +616,7 @@ export const algorithms = {
 
         grid.forEachCell((cell) => {
           cell.neighbours.toArray().forEach((neighbour) => {
-              sizeParametersgrid.link(cell, neighbour);
+              grid.link(cell, neighbour);
           });
         });
 
