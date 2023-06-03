@@ -8,12 +8,12 @@ export const config = Object.freeze({
                 width: {
                     min: 2,
                     max: 50,
-                    initial: 10
+                    initial: 30
                 },
                 height: {
                     min: 2,
                     max: 50,
-                    initial: 10
+                    initial: 30
                 }
             },
             defaultAlgorithm: ALGORITHM_RECURSIVE_BACKTRACK

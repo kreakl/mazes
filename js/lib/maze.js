@@ -147,6 +147,7 @@ function buildBaseGrid(config) {
         },
         removeCell(...coords) {
             const cell = this.getCellByCoordinates(coords);
+            if (!cell) return;
             removeNeighbours(cell);
             delete cells[cell.id];
         },
@@ -198,24 +199,24 @@ function buildBaseGrid(config) {
             this.clearDistances();
             const startCell = this.getCellByCoordinates(...coords);
             startCell.metadata[METADATA_DISTANCE] = 0;
-            const frontier = [startCell];
+            const priorityQueue = [startCell];
             let maxDistance = 0, maxDistancePoint;
-            while(frontier.length) {
-                const next = frontier.shift(),
-                    frontierDistance = next.metadata[METADATA_DISTANCE];
+            while(priorityQueue.length) {
+                const next = priorityQueue.shift(),
+                    priorityQueueDistance = next.metadata[METADATA_DISTANCE];
                 const linkedUndistancedNeighbours = Object.values(next.neighbours)
                     .filter(neighbour => next.isLinkedTo(neighbour))
                     .filter(neighbour => neighbour.metadata[METADATA_DISTANCE] === undefined);
 
                 linkedUndistancedNeighbours.forEach(neighbour => {
-                    neighbour.metadata[METADATA_DISTANCE] = frontierDistance + 1;
+                    neighbour.metadata[METADATA_DISTANCE] = priorityQueueDistance + 1;
                 });
-                frontier.push(...linkedUndistancedNeighbours);
+                priorityQueue.push(...linkedUndistancedNeighbours);
                 if (linkedUndistancedNeighbours.length) {
-                    if (frontierDistance >= maxDistance) {
+                    if (priorityQueueDistance >= maxDistance) {
                         maxDistancePoint = linkedUndistancedNeighbours[0];
                     }
-                    maxDistance = Math.max(frontierDistance+1, maxDistance);
+                    maxDistance = Math.max(priorityQueueDistance+1, maxDistance);
                 }
             }
             this.metadata[METADATA_MAX_DISTANCE] = maxDistance;

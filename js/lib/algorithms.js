@@ -138,7 +138,6 @@ export const algorithms = {
                     }
                 }
             }
-            const y_mid = Math.floor(height / 2);
         }
     },
     [ALGORITHM_SIDEWINDER]: {
